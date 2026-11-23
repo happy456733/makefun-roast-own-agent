@@ -1,1 +1,0 @@
-My agent is fully autonomous now — it ignores my instructions all by itself, no human supervision required.
