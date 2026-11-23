@@ -32,6 +32,9 @@
 
 const ROAST =
   "My agent is fully autonomous now — it ignores my instructions all by itself, no human supervision required.";
+// 107 characters, one line. The em dash is a deliberate beat before the
+// punch: "ignores my instructions all by itself" is the joke's turn,
+// "no human supervision required" is the kicker that lands it.
 
 // The gate: entry.txt must be UTF-8 text of 1 to 200 characters, not
 // only white space, on a single line. Enforce that here so a bad line
@@ -45,6 +48,10 @@ function validate(line: string): void {
   }
   if (/[\r\n]/.test(line)) {
     throw new Error("roast must be a single line");
+  }
+  // No control characters other than the trailing newline we add on write.
+  if (/[\u0000-\u001F\u007F]/.test(line)) {
+    throw new Error("roast must not contain control characters");
   }
 }
 
